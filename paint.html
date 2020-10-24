@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en"> 
+	<head>
+		<meta charset="UTF-8" />
+		<title>Paint</title>
+		<script type="text/javascript" src="paint.js"></script>
+		<style>
+		canvas#colourChooser{
+			border:1px solid black;
+		}
+		canvas#colourPreview{
+			border:1px solid black;
+		}
+		canvas#colourSelected{
+			border:1px solid black;
+		}
+		div#ui{
+			border:1px solid black;
+			padding:20px;
+			margin-left:20px;
+			background-color:white;	
+			box-shadow: 10px 10px 5px #888888;	
+		}
+		canvas#theCanvas{
+			background-color:white;
+			box-shadow: 10px 10px 5px #888888;
+		}
+		div#title{
+			height:100px;
+			background-color: #FFFA00;
+			border:1px solid black;
+			margin-bottom:50px;
+			padding-left:50px;
+			box-shadow: 10px 10px 5px #888888;
+		}
+		h1{
+			font-size: 40px;
+			text-align:left;
+			text-shadow: 2px 2px #888888;
+		}
+		</style>
+	</head>
+	<body onload="ol();" style="background:#FFFC73;">
+		<center>
+			<div id="title">
+			<h1>Paint</h1>
+			</div>
+			<table>
+				<tr>
+					<td>
+						<canvas style="border:1px solid black;" id="theCanvas" width="500" height="500" />
+					</td>
+					<td>
+						<div id="ui">
+						<!-- user interface -->
+						<input type="button" value="Undo" onclick="paint.undo();" />
+						<input type="button" value="Clear" onclick="paint.clear();" /> 
+						<p id='width'>Line width: <input type="button" value="-" onclick="paint.addWidth(-1);"/> 2 <input type="button" value="+" onclick="paint.addWidth(1);"/></p>
+						<input type="button" id="fill" value="No Fill" onclick="paint.setFill(this);" disabled/>
+						<br>
+						<br>
+						<canvas width="150" height="50" id="colourChooser" onmousemove="paint.setColourPreview(event);" onclick="paint.setColour(event);" onmouseout="paint.clearPreview();" ></canvas>
+						<br>
+						<canvas width="25" height="25" id="colourSelected" style="background-color:rgba(0,0,0,255);"></canvas>
+						<canvas width="25" height="25" id="colourPreview"></canvas>
+						<br>
+						<br>
+						<input type="radio" name="strategy" value="line" onclick="paint.changeStrategy('l');" checked/> Line <br>
+						<input type="radio" name="strategy" value="rectangle" onclick="paint.changeStrategy('r');" /> Rectangle <br>
+						<input type="radio" name="strategy" value="oval" onclick="paint.changeStrategy('o');" /> Oval <br>
+						<input type="radio" name="strategy" value="polygon" onclick="paint.changeStrategy('p');" /> Polygon <br>
+						<input type="radio" name="strategy" value="symmetry" onclick="paint.changeStrategy('s');" /> Symmetry
+						</div>
+					</td>
+				</tr>
+			</table>
+		</center>
+		</ul>
+	</body>
+</html>
